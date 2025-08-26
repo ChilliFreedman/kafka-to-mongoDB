@@ -2,7 +2,8 @@ from pub_kafka_configurations import ProducerConfig
 
 class ProducerSet:
     def __init__(self,producer_config:ProducerConfig ):
-        self.producer = producer_config.get_producer()
+        self.producer_con = producer_config
+        self.producer = self.producer_con.get_producer()
 
 
     def publish_message(self,topic,message):
@@ -10,7 +11,8 @@ class ProducerSet:
 
 
 if __name__ == '__main__':
-    producer_set = ProducerSet(ProducerConfig.get_producer())
+    producer_set = ProducerSet(ProducerConfig())
+
 
     # logging.info("Producer metrics", producer.metrics())
     event = {"App": "Producer 1"}
