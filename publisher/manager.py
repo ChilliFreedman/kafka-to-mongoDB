@@ -19,12 +19,14 @@ class Manager:
         interesting_dict = {}
         for category,articl in self.all_interesting_data.items():
             interesting_dict[category] = articl[0]
+            articl.pop(0)
         return interesting_dict
 
     def get_10_not_interesting_articles(self):
         not_interesting_dict = {}
         for category,articl in self.all_interesting_data.items():
             not_interesting_dict[category] = articl[0]
+            articl.pop(0)
         return not_interesting_dict
 
 
@@ -34,3 +36,6 @@ class Manager:
         self.producer_set.publish_message(self.topic2, self.get_10_not_interesting_articles())
         self.producer_set.producer.flush()
 
+if __name__ == "__main__":
+    manager = Manager()
+    manager.publish_messages()
